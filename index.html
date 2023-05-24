@@ -8,74 +8,87 @@
 	</head>
 	
 	<body class="bg-amber-50">
-        <header class="flex items-center justify-center h-16 text-gray-800 border-b border-gray-800">
-            <h1 class="text-3xl font-bold">Odisea Mítica</h1>
-        </header>
+    <header class="flex items-center justify-center h-16 text-gray-800 border-b border-gray-800">
+        <h1 class="text-3xl font-bold">Odisea Mítica</h1>
+    </header>
 
-        <div class="font-sans text-center mt-20 p-10">
-            <h1 class="text-gray-800 font-bold text-2xl p-5">Traductor de Texto a Runas</h1>
-            <input type="text" id="text-input" type="text" class="px-4 py-2 text-base border-2 border-gray-800" placeholder="Introduce tu texto">
-            <button id="translate-button" class="px-4 py-2 text-base bg-gray-800 text-white border-none cursor-pointer" onclick="translateToRunes()">Traducir</button>
-            <div id="result" class="mt-8 text-lg text-gray-800"></div>
+    <div class="font-sans text-center mt-20 p-10">
+        <h1 class="text-gray-800 font-bold text-2xl p-5">Traductor de Texto a Runas</h1>
+        <input type="text" id="text-input" type="text" class="px-4 py-2 text-base border-2 border-gray-800" placeholder="Introduce tu texto">
+        <button id="translate-button" class="px-4 py-2 text-base bg-gray-800 text-white border-none cursor-pointer" onclick="translateToRunes()">Traducir</button>
+        <div id="result" class="mt-8 text-lg text-gray-800"></div>
 
-            <h2 class="font-bold p-5">La historia de Tyr - El sacrificio que le convirtió en leyenda nórdica</h2>
-            <div id="video-container" class="flex justify-center aspect-w-16 aspect-h-9">
-                <a dir="ltr" href="https://youtu.be/hKGbxyfHiD8" rel="noopener noreferrer nofollow" target="_blank" role="link">
-                  <img class="rounded-lg" src="thumbnail_yt.png" width="560" height="315">
-                </a>
-            </div>
+        <h2 class="font-bold p-5">La historia de Tyr - El sacrificio que le convirtió en leyenda nórdica</h2>
+        <div id="video-container" class="flex justify-center aspect-w-16 aspect-h-9">
+          <a href="https://www.youtube.com/watch?v=hKGbxyfHiD8" onclick="redirigirAYouTube(event)">
+            <img class="rounded-lg" src="thumbnail_yt.png" width="560" height="315">
+          </a>
+              
         </div>
-
-        <script>
-            function translateToRunes() {
-              var text = document.getElementById("text-input").value;
-              var translatedText = translateText(text);
-              document.getElementById("result").innerHTML = translatedText;
-            }
         
-            function translateText(text) {
-              var mapping = {
-                "a": "ᚨ",
-                "b": "ᛒ",
-                "c": "ᚲ",
-                "d": "ᛞ",
-                "e": "ᛖ",
-                "f": "ᚠ",
-                "g": "ᚷ",
-                "h": "ᚺ",
-                "i": "ᛁ",
-                "j": "ᛃ",
-                "k": "ᚲ",
-                "l": "ᛚ",
-                "m": "ᛗ",
-                "n": "ᚾ",
-                "o": "ᛟ",
-                "p": "ᛈ",
-                "q": "ᛩ",
-                "r": "ᚱ",
-                "s": "ᛊ",
-                "t": "ᛏ",
-                "u": "ᚢ",
-                "v": "ᚡ",
-                "w": "ᚹ",
-                "x": "ᚲᛊ",
-                "y": "ᛃ",
-                "z": "ᛉ",
-                " ": " "
-            };
-        
-              var translatedText = "";
-              for (var i = 0; i < text.length; i++) {
-                var char = text.charAt(i).toLowerCase();
-                if (mapping.hasOwnProperty(char)) {
-                  translatedText += mapping[char];
-                } else {
-                  translatedText += char;
-                }
-              }
+    </div>
 
-              return translatedText;
+    <script>
+        function translateToRunes() {
+          var text = document.getElementById("text-input").value;
+          var translatedText = translateText(text);
+          document.getElementById("result").innerHTML = translatedText;
+        }
+    
+        function translateText(text) {
+          var mapping = {
+            "a": "ᚨ",
+            "b": "ᛒ",
+            "c": "ᚲ",
+            "d": "ᛞ",
+            "e": "ᛖ",
+            "f": "ᚠ",
+            "g": "ᚷ",
+            "h": "ᚺ",
+            "i": "ᛁ",
+            "j": "ᛃ",
+            "k": "ᚲ",
+            "l": "ᛚ",
+            "m": "ᛗ",
+            "n": "ᚾ",
+            "o": "ᛟ",
+            "p": "ᛈ",
+            "q": "ᛩ",
+            "r": "ᚱ",
+            "s": "ᛊ",
+            "t": "ᛏ",
+            "u": "ᚢ",
+            "v": "ᚡ",
+            "w": "ᚹ",
+            "x": "ᚲᛊ",
+            "y": "ᛃ",
+            "z": "ᛉ",
+            " ": " "
+        };
+    
+          var translatedText = "";
+          for (var i = 0; i < text.length; i++) {
+            var char = text.charAt(i).toLowerCase();
+            if (mapping.hasOwnProperty(char)) {
+              translatedText += mapping[char];
+            } else {
+              translatedText += char;
             }
-          </script>
+          }
+
+          return translatedText;
+        }
+      </script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.5/mobile-detect.min.js"></script>
+      <script>
+        function redirigirAYouTube(event) {
+          var md = new MobileDetect(window.navigator.userAgent);
+          if (md.mobile()) {
+            event.preventDefault();
+            window.location.href = 'vnd.youtube://watch?v=hKGbxyfHiD8';
+          }
+        }
+      </script>
   </body>
 </html>
