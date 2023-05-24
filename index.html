@@ -12,7 +12,7 @@
             <h1 class="text-3xl font-bold">Odisea Mítica</h1>
         </header>
         
-        <div class="font-sans text-center mt-20 p-10">
+        <div class="font-sans text-center p-10">
             <h1 class="text-gray-800 font-bold text-2xl p-5">Traductor de Texto a Runas</h1>
             <input type="text" id="text-input" type="text" class="px-4 py-2 text-base border-2 border-gray-800" placeholder="Introduce tu texto">
             <button id="translate-button" class="px-4 py-2 text-base bg-gray-800 text-white border-none cursor-pointer" onclick="translateToRunes()">Traducir</button>
@@ -20,8 +20,11 @@
 
             <h2 class="font-bold p-5">La historia de Tyr - El sacrificio que le convirtió en leyenda nórdica</h2>
             <div id="video-container" class="flex justify-center aspect-w-16 aspect-h-9">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/hKGbxyfHiD8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                
+                <div id="player"></div>
             </div>
+
+            <div id="player" class="flex justify-center items-center aspect-w-16 aspect-h-9"></div>
         </div>
 
         <script>
@@ -74,6 +77,39 @@
         
               return translatedText;
             }
-          </script>
+        </script>
+        
+        <script src="https://www.youtube.com/iframe_api"></script>
+        <script>
+          // Variable global para el reproductor de YouTube
+          var player;
+        
+          // Función para cargar el reproductor de YouTube
+          function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+              height: '315',
+              width: '560',
+              videoId: 'hKGbxyfHiD8',
+              playerVars: {
+                'playsinline': 1
+              },
+              events: {
+                'onReady': onPlayerReady
+              }
+            });
+          }
+        
+          // Función que se ejecuta cuando el reproductor está listo
+          function onPlayerReady(event) {
+            // Agrega un controlador de eventos para hacer clic en el reproductor
+            document.getElementById('player').addEventListener('click', function() {
+              // Verifica si el dispositivo es un móvil
+              if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Abre la aplicación de YouTube con el enlace del vídeo
+                window.open('https://www.youtube.com/watch?v=hKGbxyfHiD8');
+              }
+            });
+          }
+        </script>
 	</body>
 </html>
